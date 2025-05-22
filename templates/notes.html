@@ -1,0 +1,7 @@
+{% extends "base.html"%} {%block content%}
+<h1>Existing notes</h1>
+{%if notes%} {%for item in notes%}
+<p>{{item.note}}</p>
+{%endfor%} {%else%}
+<p>No notes found.</p>
+{%endif%} {%endblock%}

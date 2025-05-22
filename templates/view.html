@@ -1,0 +1,6 @@
+{% extends "base.html"%}
+{% block content %}
+    {% for item in info %}
+        <p>User : {{item.name}}--Email : {{item.email}}</p>
+    {% endfor %}
+{% endblock %}

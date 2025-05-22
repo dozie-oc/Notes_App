@@ -1,0 +1,187 @@
+/* === Base Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  background: linear-gradient(to right, #e3f2fd, #bbdefb);
+  color: #333;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+/* === Headings === */
+h1,
+h2,
+h3,
+h4 {
+  color: #1565c0;
+  font-weight: 600;
+}
+
+/* === Buttons === */
+button {
+  border-radius: 8px;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-family: inherit;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #42a5f5, #64b5f6);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1e88e5;
+  transform: scale(1.05);
+}
+
+.btn-danger {
+  background: #e57373;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}
+
+/* === Inputs & Textarea (Soft Blue Background) === */
+input,
+textarea {
+  background: #e3f2fd; /* Light blue */
+  border: 1px solid #90caf9;
+  color: #444;
+  border-radius: 10px;
+  padding: 0.7rem;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #42a5f5;
+  box-shadow: 0 0 6px rgba(66, 165, 245, 0.4);
+  outline: none;
+}
+
+/* === Buttons (Blue Theme) === */
+button {
+  background: linear-gradient(to right, #42a5f5, #64b5f6);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: #1e88e5;
+  transform: scale(1.05);
+}
+
+/* === Danger (Delete) Buttons === */
+.btn-danger {
+  background: #e53935;
+}
+
+.btn-danger:hover {
+  background: #c62828;
+}
+
+/* === Card / Note Styling === */
+.card {
+  background: #e3f2fd;
+  border: 1px solid #90caf9;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(66, 165, 245, 0.2);
+}
+
+.card-footer {
+  background: transparent;
+  border-top: none;
+}
+
+/* === Animation === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+/* === Auth Pages === */
+.auth-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(to right, #bbdefb, #90caf9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+}
+
+/* === Logout Button (Light Blue, Deeper on Hover) === */
+.logout-button {
+  background-color: #64b5f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #1e88e5;
+}
+
+/* === Auth Link Text === */
+.auth-link-container {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  text-align: center;
+  color: #444;
+}
+
+/* === Auth Links === */
+.auth-link {
+  color: #1e88e5;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #1565c0;
+  text-decoration: underline;
+}

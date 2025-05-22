@@ -1,0 +1,122 @@
+{% extends "base.html "%} {%block content%}
+
+<!--
+<form action="{{url_for ('acct')}}" method="post">
+  Email:<input
+    type="email"
+    name="email"
+    placeholder="Enter Email"
+    value="{{email if email}}"
+  />
+  <input type="submit" name="submit" value="submit" /><br />
+</form>
+-->
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+</head>
+<h2 class="mb-4">Your Notes</h2>
+
+{% if notes %}
+<div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+  {% for note in notes %}
+  <div class="note" id="note-{{ note.id }}">
+    <div class="col">
+      <div
+        class="card h-100 shadow-sm d-flex flex-column justify-content-between"
+      >
+        <div class="card-body">
+          <p class="card-text">{{ note.note }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-start gap-2">
+          <form action="{{ url_for('acct') }}" method="post" class="m-0">
+            <input type="hidden" name="note_id" value="{{ note.id }}" />
+            <button
+              type="submit"
+              name="action"
+              value="Edit"
+              class="btn btn-sm btn-primary"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-vector-pen"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086z"
+                />
+              </svg>
+            </button>
+          </form>
+          <form action="{{ url_for('acct') }}" method="post" class="m-0">
+            <input type="hidden" name="note_id" value="{{ note.id }}" />
+            <button
+              type="submit"
+              name="action"
+              value="Delete"
+              class="btn btn-sm btn-danger delete-btn"
+              data-action="Delete"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-x"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+<p class="text-muted">No notes found.</p>
+{% endif %}
+
+<h3 class="mt-5">Add a New Note</h3>
+<form action="{{url_for('acct')}}" method="post">
+  <input
+    type="hidden"
+    name="note_id"
+    value="{{ selected_note.id if selected_note else '' }}"
+  />
+  <div class="mb-3">
+    <textarea
+      class="form-control"
+      id="notes"
+      name="note"
+      rows="5"
+      placeholder="Write your note here..."
+    >
+{{ selected_note.note if selected_note else ''}}</textarea
+    >
+  </div>
+  <button type="submit" name="action" value="Save" class="btn btn-primary">
+    Save Note
+  </button>
+</form>
+
+{%for note in notes%} {%endfor%}
+
+<form action="{{ url_for('logout') }}" method="post" class="mt-3">
+  <button type="submit" class="logout-button">Log out</button>
+</form>
+
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock %}

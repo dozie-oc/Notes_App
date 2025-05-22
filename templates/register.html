@@ -1,0 +1,18 @@
+{% extends "base.html"%} {%block content%}
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2 class="text-center mb-4">Registration Form</h2>
+    <form action="{{url_for ('register')}}" method="post">
+      <p>Name:</p>
+      <input type="text" name="name" />
+      <p>Password:</p>
+      <input type="text" name="password" />
+      <p><input type="submit" name="submit" value="submit" /></p>
+      <div class="auth-link-container">
+        If you already have an account,
+        <a href="{{ url_for('login') }}" class="auth-link">login here</a>.
+      </div>
+    </form>
+  </div>
+</div>
+{%endblock%}
