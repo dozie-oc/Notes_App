@@ -2,17 +2,30 @@ from flask import Flask, redirect, render_template, url_for, request, session, f
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin, LoginManager, login_required, login_user, logout_user, current_user
+import os
+from dotenv import load_dotenv
+from flask_migrate import Migrate
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = "rans"
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///users.sqlite3'
+app.secret_key = os.getenv("SECRET_KEY", "dev-secret")  # Use a secure key in production
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"  # Where to redirect if not logged in
 login_manager.login_message_category = "info"
 
+db_url = os.getenv("DATABASE_URL", "sqlite:///users.sqlite3")
+
+# Render gives a postgres URL starting with "postgres://"
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = db_url
+
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class Users(db.Model, UserMixin):
     id = db.Column("id",db.Integer, primary_key=True)
@@ -183,6 +196,4 @@ def logout():
     return redirect(url_for("login"))
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)

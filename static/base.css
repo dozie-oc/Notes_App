@@ -152,7 +152,7 @@ button:hover {
 
 /* === Logout Button (Light Blue, Deeper on Hover) === */
 .logout-button {
-  background-color: #64b5f6;
+  background-color: #f66464;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -162,7 +162,7 @@ button:hover {
 }
 
 .logout-button:hover {
-  background-color: #1e88e5;
+  background-color: #900202;
 }
 
 /* === Auth Link Text === */
